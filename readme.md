@@ -41,14 +41,3 @@ O design foi construído seguindo as diretrizes do **Material Design 3**, utiliz
 ### Back-end & Banco de Dados *(Em Desenvolvimento)*
 * **Java** (Regras de negócio e integração)
 * **SQL / Banco de Dados** (Persistência e modelagem dos dados)
-
----
-
-## 📁 Estrutura do Repositório
-
-├── assets/            # Imagens e capturas de tela do README
-├── css/               # Arquivo de estilização global (style.css)
-├── index.html         # Tela do Dashboard (Painel)
-├── inventario.html    # Tela de formulário de registro
-├── distribuicao.html  # Tela de destino e triagem
-└── README.md          # Documentação do projeto
