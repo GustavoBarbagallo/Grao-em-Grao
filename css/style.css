@@ -1,0 +1,354 @@
+/* Configurações Gerais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333333;
+    padding-bottom: 80px; /* Espaço para não cobrir o conteúdo com a nav bar */
+}
+
+/* Cabeçalho */
+.app-bar {
+    background-color: #009661;
+    color: #ffffff;
+    padding: 20px 16px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-bar h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.app-bar p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+/* Container do Conteúdo */
+.container {
+    padding: 16px;
+    max-width: 600px; /* Simula a largura máxima de um app mobile na web */
+    margin: 0 auto;
+}
+
+.section-title {
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #1c1b1f;
+}
+
+.section-title p {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 4px;
+}
+
+/* Lista de Cards */
+.cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Estrutura do Card (Material Design 3) */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 5px solid transparent;
+}
+
+/* Variações de Alerta nos Cards */
+.card.alert-orange {
+    border-left-color: #f36c13;
+}
+
+.card.alert-orange .due-date {
+    color: #f36c13;
+}
+
+.card.alert-orange .progress-bar {
+    background-color: #f36c13;
+}
+
+.card.alert-green {
+    border-left-color: #009661;
+}
+
+.card.alert-green .due-date {
+    color: #009661;
+}
+
+.card.alert-green .progress-bar {
+    background-color: #009661;
+}
+
+/* Elementos internos do Card */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1c1b1f;
+}
+
+.quantity {
+    font-size: 14px;
+    color: #666666;
+}
+
+.icon-alert {
+    color: #f36c13;
+    font-size: 24px;
+}
+
+/* Barra de Progresso */
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 4px;
+}
+
+.due-date {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Barra de Navegação Inferior (Touch Targets Grandes) */
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid #e0e0e0;
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #555555;
+    font-size: 12px;
+    font-weight: 500;
+    width: 100%;
+    height: 100%; /* Garante área de clique grande para o voluntário */
+    gap: 4px;
+    transition: color 0.2s ease;
+}
+
+/* Item ativo na navegação */
+.nav-item.active {
+    color: #009661;
+}
+
+.nav-item .material-icons-outlined {
+    font-size: 26px;
+}
+
+/* ==========================================================================
+   Estilos específicos da Tela de Registro de Inventário
+   ========================================================================== */
+
+/* Card que envolve o formulário */
+.form-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* Grupo de inputs empilhados exatamente como no Figma */
+.form-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    width: 100%;
+}
+
+/* Customização das bordas dos inputs para encaixarem perfeitamente */
+.input-group input {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border: 1px solid #b0b0b0;
+    background-color: #ffffff;
+    color: #1c1b1f;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+/* Truque de CSS para fazer as bordas colarem igual ao seu protótipo */
+.input-group:first-child input {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.input-group:not(:first-child):not(:last-of-type) input {
+    border-top: none; /* Remove a borda dupla do meio */
+}
+
+.input-group:nth-child(3) input {
+    border-top: none;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: 16px; /* Espaço antes do botão */
+}
+
+/* Efeito de foco padrão do Material Design */
+.input-group input:focus {
+    border-color: #009661;
+    box-shadow: inset 0 0 0 1px #009661;
+}
+
+/* Botão de Envio Grande (Touch Target Amplo) */
+.btn-submit {
+    background-color: #009661;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    background-color: #007d50;
+}
+
+.btn-submit:active {
+    transform: scale(0.98); /* Feedback tátil ao clicar */
+}
+
+.btn-submit .material-icons-outlined {
+    font-size: 22px;
+}
+
+/* Ajuste específico para o input de data no mobile */
+input[type="date"] {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ==========================================================================
+   Estilos específicos da Tela de Distribuição
+   ========================================================================== */
+
+/* Card principal da distribuição */
+.distribution-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 16px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.distribution-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1c1b1f;
+    margin-bottom: 16px;
+}
+
+/* Grupo de botões empilhados */
+.btn-distribution-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo padrão de cada botão grande (Touch Target Amplo) */
+.btn-dest {
+    background-color: #ffffff;
+    color: #1c1b1f;
+    border: 1px solid #b5c4d0; /* Tom de cinza azulado sutil do seu protótipo */
+    padding: 20px 16px;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+/* Arredondamento apenas nas pontas extremas do grupo (Efeito Material Design) */
+.btn-dest:first-of-type {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.btn-dest:not(:first-of-type) {
+    border-top: none; /* Evita linhas duplas entre os botões */
+}
+
+.btn-dest:last-of-type {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Efeito de hover/clique */
+.btn-dest:hover {
+    background-color: #f1f5f9;
+}
+
+/* Comportamento quando o botão for selecionado (Mudança visual de estado) */
+.btn-dest.active {
+    background-color: #e8f5e9; /* Fundo verde bem clarinho */
+    border-color: #009661;
+    color: #009661;
+    font-weight: 700;
+    position: relative;
+    z-index: 1; /* Garante que a borda verde fique por cima */
+    box-shadow: 0 0 0 1px #009661;
+}
+
+/* Ajuste no tamanho do ícone dentro dos botões */
+.btn-dest .material-icons-outlined {
+    font-size: 22px;
+}
