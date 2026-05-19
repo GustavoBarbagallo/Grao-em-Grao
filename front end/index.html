@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Painel</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="app-bar">
+        <h1>De Grão em Grão</h1>
+        <p>Gestão de Banco de Alimentos</p>
+    </header>
+
+    <main class="container">
+        <section class="section-title">
+            <h2>Itens que Vencem em Breve</h2>
+            <p>Priorize a distribuição dos itens próximos ao vencimento</p>
+        </section>
+
+        <div class="cards-list">
+            
+            <div class="card alert-orange">
+                <div class="card-header">
+                    <div>
+                        <h3>Arroz Branco</h3>
+                        <span class="quantity">Quantidade: 45 unidades</span>
+                    </div>
+                    <span class="material-icons-outlined icon-alert">warning</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                <span class="due-date">2 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Tomate Enlatado</h3>
+                        <span class="quantity">Quantidade: 28 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 65%;"></div>
+                </div>
+                <span class="due-date">5 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Macarrão Penne</h3>
+                        <span class="quantity">Quantidade: 32 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 55%;"></div>
+                </div>
+                <span class="due-date">7 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-orange">
+                <div class="card-header">
+                    <div>
+                        <h3>Feijão Preto</h3>
+                        <span class="quantity">Quantidade: 18 unidades</span>
+                    </div>
+                    <span class="material-icons-outlined icon-alert">warning</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 90%;"></div>
+                </div>
+                <span class="due-date">1 dia até o vencimento</span>
+            </div>
+
+        </div>
+    </main>
+
+    <nav class="bottom-navigation">
+        <a href="index.html" class="nav-item active">
+            <span class="material-icons-outlined">home</span>
+            <span>Painel</span>
+        </a>
+        <a href="inventario.html" class="nav-item">
+            <span class="material-icons-outlined">add_box</span>
+            <span>Inserir</span>
+        </a>
+        <a href="distribuicao.html" class="nav-item">
+            <span class="material-icons-outlined">send</span>
+            <span>Enviar</span>
+        </a>
+    </nav>
+
+</body>
+</html>

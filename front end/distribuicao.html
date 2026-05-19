@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Distribuição</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="app-bar">
+        <h1>De Grão em Grão</h1>
+        <p>Gestão de Banco de Alimentos</p>
+    </header>
+
+    <main class="container">
+        <section class="section-title">
+            <h2>Distribuição</h2>
+            <p>Selecione o destino dos itens alimentares</p>
+        </section>
+
+        <div class="distribution-card">
+            <h3>Selecione o Destino</h3>
+            
+            <div class="btn-distribution-group">
+                
+                <button class="btn-dest" onclick="selectDestination(this)">
+                    <span class="material-icons-outlined">restaurant</span>
+                    Cozinha Local
+                </button>
+
+                <button class="btn-dest" onclick="selectDestination(this)">
+                    <span class="material-icons-outlined">people</span>
+                    Doação Familiar
+                </button>
+
+                <button class="btn-dest" onclick="selectDestination(this)">
+                    <span class="material-icons-outlined">swap_horiz</span>
+                    Transferência entre ONGs
+                </button>
+
+                <button class="btn-dest" onclick="selectDestination(this)">
+                    <span class="material-icons-outlined">delete</span>
+                    Descarte
+                </button>
+
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-navigation">
+        <a href="index.html" class="nav-item">
+            <span class="material-icons-outlined">home</span>
+            <span>Painel</span>
+        </a>
+        <a href="inventario.html" class="nav-item">
+            <span class="material-icons-outlined">add_box</span>
+            <span>Registrar</span>
+        </a>
+        <a href="distribuicao.html" class="nav-item active">
+            <span class="material-icons-outlined">send</span>
+            <span>Distribuir</span>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
