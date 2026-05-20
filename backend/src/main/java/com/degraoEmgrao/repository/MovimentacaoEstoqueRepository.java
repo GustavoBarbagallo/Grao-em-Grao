@@ -10,17 +10,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface MovimentacaoEstoqueRepository extends JpaRepository<MovimentacaoEstoque, Long> {
+public interface MovimentacaoEstoqueRepository extends JpaRepository<MovimentacaoEstoque, Integer> {
 
-    List<MovimentacaoEstoque> findByItemIdOrderByDataHoraDesc(Long itemId);
-    List<MovimentacaoEstoque> findByTipoOrderByDataHoraDesc(MovimentacaoEstoque.TipoMovimentacao tipo);
-    List<MovimentacaoEstoque> findByDoadorIdOrderByDataHoraDesc(Long doadorId);
-    List<MovimentacaoEstoque> findByFamiliaIdOrderByDataHoraDesc(Long familiaId);
+    // Busca por pessoa
+    List<MovimentacaoEstoque> findByPessoaIdPessoa(Integer idPessoa);
 
-    @Query("SELECT m FROM MovimentacaoEstoque m WHERE m.dataHora BETWEEN :inicio AND :fim ORDER BY m.dataHora DESC")
-    List<MovimentacaoEstoque> findByPeriodo(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
+    // Busca por tipo (ENTRADA ou SAIDA)
+    List<MovimentacaoEstoque> findByTipoMovimentacao(MovimentacaoEstoque.TipoMovimentacao tipo);
 
-    // Total distribuído no período
-    @Query("SELECT COALESCE(SUM(m.quantidade), 0) FROM MovimentacaoEstoque m WHERE m.tipo = 'SAIDA_DISTRIBUICAO' AND m.dataHora BETWEEN :inicio AND :fim")
-    Double totalDistribuidoNoPeriodo(@Param("inicio") LocalDateTime inicio, @Param("fim") LocalDateTime fim);
+    // Busca por período
+    @Query("SELECT m FROM MovimentacaoEstoque m " +
+           "WHERE m.dataHoraMovimentacao BETWEEN :inicio AND :fim " +
+           "ORDER BY m.dataHoraMovimentacao DESC")
+    List<MovimentacaoEstoque> findByPeriodo(
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
+
+    // Total distribuído no período (saídas)
+    @Query("SELECT COALESCE(SUM(m.quantidadeMovimentada), 0) FROM MovimentacaoEstoque m " +
+           "WHERE m.tipoMovimentacao = 'SAIDA' " +
+           "AND m.dataHoraMovimentacao BETWEEN :inicio AND :fim")
+    Double totalDistribuidoNoPeriodo(
+            @Param("inicio") LocalDateTime inicio,
+            @Param("fim") LocalDateTime fim);
 }

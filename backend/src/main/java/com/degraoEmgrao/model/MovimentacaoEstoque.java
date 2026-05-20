@@ -1,90 +1,58 @@
 package com.degraoEmgrao.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Registra cada entrada ou saída de itens no estoque.
- * Garante rastreabilidade completa do ciclo de vida de cada doação.
- */
 @Entity
-@Table(name = "movimentacoes_estoque")
+@Table(name = "Movimentacoes")
 public class MovimentacaoEstoque {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_movimentacao")
+    private Integer idMovimentacao;
 
-    @NotNull(message = "Item é obrigatório")
-    @Column(name = "item_id", nullable = false)
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name = "id_pessoa")
+    private Pessoa pessoa;
 
-    @NotNull(message = "Tipo de movimentação é obrigatório")
+    @ManyToOne
+    @JoinColumn(name = "id_estoque")
+    private Estoque estoque;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TipoMovimentacao tipo;
+    @Column(name = "tipo_movimentacao")
+    private TipoMovimentacao tipoMovimentacao;
 
-    @NotNull(message = "Quantidade é obrigatória")
-    @Positive(message = "Quantidade deve ser positiva")
-    @Column(nullable = false)
-    private Double quantidade;
+    @Column(name = "quantidade_movimentada")
+    private BigDecimal quantidadeMovimentada;
 
-    @Column
-    private Long doadorId;        // Preenchido em entradas por doação
+    @Column(name = "data_hora_movimentacao")
+    private LocalDateTime dataHoraMovimentacao;
 
-    @Column
-    private Long familiaId;       // Preenchido em saídas para famílias
+    private String observacao;
 
-    @Column(columnDefinition = "TEXT")
-    private String observacoes;
+    public enum TipoMovimentacao { ENTRADA, SAIDA }
 
-    @Column
-    private String operadorResponsavel; // Usuário que registrou
+    public Integer getIdMovimentacao() { return idMovimentacao; }
+    public void setIdMovimentacao(Integer idMovimentacao) { this.idMovimentacao = idMovimentacao; }
 
-    @Column(updatable = false, nullable = false)
-    private LocalDateTime dataHora = LocalDateTime.now();
+    public Pessoa getPessoa() { return pessoa; }
+    public void setPessoa(Pessoa pessoa) { this.pessoa = pessoa; }
 
-    // -------------------------------------------------------
-    // Enum
-    // -------------------------------------------------------
-    public enum TipoMovimentacao {
-        ENTRADA_DOACAO,
-        ENTRADA_COMPRA,
-        SAIDA_DISTRIBUICAO,
-        SAIDA_DESCARTE,
-        SAIDA_VENCIMENTO,
-        AJUSTE_INVENTARIO
-    }
+    public Estoque getEstoque() { return estoque; }
+    public void setEstoque(Estoque estoque) { this.estoque = estoque; }
 
-    // -------------------------------------------------------
-    // Getters e Setters
-    // -------------------------------------------------------
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public TipoMovimentacao getTipoMovimentacao() { return tipoMovimentacao; }
+    public void setTipoMovimentacao(TipoMovimentacao tipoMovimentacao) { this.tipoMovimentacao = tipoMovimentacao; }
 
-    public Long getItemId() { return itemId; }
-    public void setItemId(Long itemId) { this.itemId = itemId; }
+    public BigDecimal getQuantidadeMovimentada() { return quantidadeMovimentada; }
+    public void setQuantidadeMovimentada(BigDecimal quantidadeMovimentada) { this.quantidadeMovimentada = quantidadeMovimentada; }
 
-    public TipoMovimentacao getTipo() { return tipo; }
-    public void setTipo(TipoMovimentacao tipo) { this.tipo = tipo; }
+    public LocalDateTime getDataHoraMovimentacao() { return dataHoraMovimentacao; }
+    public void setDataHoraMovimentacao(LocalDateTime dataHoraMovimentacao) { this.dataHoraMovimentacao = dataHoraMovimentacao; }
 
-    public Double getQuantidade() { return quantidade; }
-    public void setQuantidade(Double quantidade) { this.quantidade = quantidade; }
-
-    public Long getDoadorId() { return doadorId; }
-    public void setDoadorId(Long doadorId) { this.doadorId = doadorId; }
-
-    public Long getFamiliaId() { return familiaId; }
-    public void setFamiliaId(Long familiaId) { this.familiaId = familiaId; }
-
-    public String getObservacoes() { return observacoes; }
-    public void setObservacoes(String observacoes) { this.observacoes = observacoes; }
-
-    public String getOperadorResponsavel() { return operadorResponsavel; }
-    public void setOperadorResponsavel(String operadorResponsavel) { this.operadorResponsavel = operadorResponsavel; }
-
-    public LocalDateTime getDataHora() { return dataHora; }
-
-    public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
+    public String getObservacao() { return observacao; }
+    public void setObservacao(String observacao) { this.observacao = observacao; }
 }

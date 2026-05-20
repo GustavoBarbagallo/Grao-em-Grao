@@ -21,24 +21,16 @@ public class MovimentacaoEstoqueService {
         return movimentacaoRepository.findAll();
     }
 
-    public Optional<MovimentacaoEstoque> buscarPorId(Long id) {
+    public Optional<MovimentacaoEstoque> buscarPorId(Integer id) {
         return movimentacaoRepository.findById(id);
     }
 
-    public List<MovimentacaoEstoque> buscarPorItem(Long itemId) {
-        return movimentacaoRepository.findByItemIdOrderByDataHoraDesc(itemId);
-    }
-
-    public List<MovimentacaoEstoque> buscarPorDoador(Long doadorId) {
-        return movimentacaoRepository.findByDoadorIdOrderByDataHoraDesc(doadorId);
-    }
-
-    public List<MovimentacaoEstoque> buscarPorFamilia(Long familiaId) {
-        return movimentacaoRepository.findByFamiliaIdOrderByDataHoraDesc(familiaId);
+    public List<MovimentacaoEstoque> buscarPorPessoa(Integer pessoaId) {
+        return movimentacaoRepository.findByPessoaIdPessoa(pessoaId);
     }
 
     public List<MovimentacaoEstoque> buscarPorTipo(MovimentacaoEstoque.TipoMovimentacao tipo) {
-        return movimentacaoRepository.findByTipoOrderByDataHoraDesc(tipo);
+        return movimentacaoRepository.findByTipoMovimentacao(tipo);
     }
 
     public List<MovimentacaoEstoque> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
@@ -46,8 +38,8 @@ public class MovimentacaoEstoqueService {
     }
 
     public MovimentacaoEstoque registrar(MovimentacaoEstoque movimentacao) {
-        if (movimentacao.getDataHora() == null) {
-            movimentacao.setDataHora(LocalDateTime.now());
+        if (movimentacao.getDataHoraMovimentacao() == null) {
+            movimentacao.setDataHoraMovimentacao(LocalDateTime.now());
         }
         return movimentacaoRepository.save(movimentacao);
     }
