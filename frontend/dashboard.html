@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Dashboard Principal</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        <header class="dashboard-header">
+            <h2>Dashboard Principal</h2>
+            <p>Visão geral das operações do banco de alimentos</p>
+        </header>
+
+        <section class="kpi-grid">
+            <div class="kpi-card green-box">
+                <div class="kpi-icon"><span class="material-icons-outlined">archive</span></div>
+                <div class="kpi-data">
+                    <span class="kpi-value">1.245</span>
+                    <span class="kpi-title">Total em Estoque</span>
+                    <span class="kpi-subtitle">itens</span>
+                </div>
+            </div>
+            <div class="kpi-card green-text">
+                <div class="kpi-icon"><span class="material-icons-outlined">trending_up</span></div>
+                <div class="kpi-data">
+                    <span class="kpi-value">342</span>
+                    <span class="kpi-title">Entradas (Mês)</span>
+                    <span class="kpi-subtitle">itens</span>
+                </div>
+            </div>
+            <div class="kpi-card blue-text">
+                <div class="kpi-icon"><span class="material-icons-outlined">trending_down</span></div>
+                <div class="kpi-data">
+                    <span class="kpi-value">287</span>
+                    <span class="kpi-title">Saídas (Mês)</span>
+                    <span class="kpi-subtitle">itens</span>
+                </div>
+            </div>
+            <div class="kpi-card orange-text">
+                <div class="kpi-icon"><span class="material-icons-outlined">report_problem</span></div>
+                <div class="kpi-data">
+                    <span class="kpi-value">18</span>
+                    <span class="kpi-title">Próximos ao Vencimento</span>
+                    <span class="kpi-subtitle">itens</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="charts-grid">
+            <div class="chart-card">
+                <h3>Entradas x Saídas</h3>
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Produtos por Categoria</h3>
+                <div class="chart-container pie-box">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-card">
+            <div class="table-header">
+                <h3>Movimentações Recentes</h3>
+                <div class="table-filters">
+                    <select class="form-select">
+                        <option>Todas</option>
+                    </select>
+                    <input type="date" class="form-date" value="2026-05-19">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Tipo</th>
+                            <th>Quantidade</th>
+                            <th>Pessoa</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arroz Branco</td>
+                            <td><span class="badge badge-entrada">Entrada</span></td>
+                            <td>50 un</td>
+                            <td>João Silva</td>
+                            <td>19/05/2026</td>
+                        </tr>
+                        <tr>
+                            <td>Feijão Preto</td>
+                            <td><span class="badge badge-saida">Saída</span></td>
+                            <td>25 un</td>
+                            <td>Maria Santos</td>
+                            <td>19/05/2026</td>
+                        </tr>
+                        <tr>
+                            <td>Azeite de Oliva</td>
+                            <td><span class="badge badge-entrada">Entrada</span></td>
+                            <td>15 un</td>
+                            <td>Pedro Costa</td>
+                            <td>18/05/2026</td>
+                        </tr>
+                        <tr>
+                            <td>Macarrão Penne</td>
+                            <td><span class="badge badge-saida">Saída</span></td>
+                            <td>30 un</td>
+                            <td>Ana Lima</td>
+                            <td>18/05/2026</td>
+                        </tr>
+                        <tr>
+                            <td>Tomate Enlatado</td>
+                            <td><span class="badge badge-entrada">Entrada</span></td>
+                            <td>40 un</td>
+                            <td>Carlos Souza</td>
+                            <td>17/05/2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

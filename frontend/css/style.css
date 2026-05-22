@@ -1,0 +1,1017 @@
+/**
+ * ==========================================================================
+ * DE GRÃO EM GRÃO - SISTEMA DE GESTÃO DE BANCO DE ALIMENTOS
+ * ARQUIVO DE ESTILOS CENTRAL (CSS REFACTORIZADO E ORGANIZADO)
+ * ==========================================================================
+ */
+
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333333;
+}
+
+/* Utilitários Globais */
+.text-center { text-align: center; }
+.font-medium { font-weight: 500; color: #1c1b1f; }
+.text-muted { color: #666666; }
+.text-orange { color: #b06000; }
+.text-red { color: #ea4335; }
+.max-width-layout { width: 100%; }
+
+/* Input de data global */
+input[type="date"] {
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* ==========================================================================
+   2. ESTRUTURA BASE DO LAYOUT ADMINISTRATIVO (DESKTOP)
+   ========================================================================== */
+.admin-body {
+    display: flex;
+    background-color: #f8f9fa;
+    padding-bottom: 0;
+    min-height: 100vh;
+}
+
+/* Barra Lateral Fixa (Sidebar) */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.sidebar-header {
+    background-color: #009661;
+    color: #ffffff;
+    padding: 24px 16px;
+}
+
+.sidebar-header h2 { font-size: 20px; font-weight: 700; }
+.sidebar-header p { font-size: 13px; opacity: 0.9; }
+
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.side-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    color: #555555;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.side-item:hover {
+    background-color: #f1f5f9;
+    color: #009661;
+}
+
+.side-item.active {
+    background-color: #e8f5e9;
+    color: #009661;
+    border-left: 4px solid #009661;
+    font-weight: 700;
+}
+
+.side-item.logout {
+    color: #dc3545;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 16px;
+}
+
+/* Área de Conteúdo Principal (Painel) */
+.main-dashboard {
+    margin-left: 260px;
+    flex: 1;
+    padding: 32px;
+    max-width: calc(100% - 260px);
+}
+
+.dashboard-header { margin-bottom: 24px; }
+.dashboard-header h2 { font-size: 24px; font-weight: 500; color: #1c1b1f; }
+.dashboard-header p { font-size: 14px; color: #666666; }
+
+
+/* ==========================================================================
+   3. COMPONENTES REUTILIZÁVEIS DE TABELAS E BADGES
+   ========================================================================== */
+.table-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.table-responsive { overflow-x: auto; }
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    text-align: left; 
+    font-size: 14px; 
+}
+
+th { 
+    padding: 12px; 
+    border-bottom: 2px solid #e0e0e0; 
+    color: #666666; 
+    font-weight: 500; 
+}
+
+td { 
+    padding: 12px; 
+    border-bottom: 1px solid #e0e0e0; 
+    color: #333333; 
+}
+
+/* Destaque para Linhas Críticas (Validade vencendo) */
+.row-urgent {
+    background-color: #ffebe9 !important;
+}
+
+/* Badges e Grupos de Tags */
+.badge-group {
+    display: flex;
+    gap: 6px;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Cores das Badges do Sistema */
+.badge-entrada      { background-color: #e8f5e9; color: #009661; }
+.badge-saida        { background-color: #e1effe; color: #2b6cb0; }
+.badge-doador       { background-color: #e8f5e9; color: #009661; }
+.badge-voluntario   { background-color: #e6f4ea; color: #137333; }
+.badge-receptor     { background-color: #fef7e0; color: #b06000; }
+.badge-acesso-user  { background-color: #e1effe; color: #2b6cb0; }
+.badge-acesso-admin { background-color: #ffebe9; color: #ea4335; font-weight: 700; }
+
+
+/* ==========================================================================
+   4. TELA DE LOGIN (DESKTOP)
+   ========================================================================== */
+.login-body-page {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 440px;
+    padding: 20px;
+}
+
+.system-brand {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.system-brand h1 {
+    color: #009661;
+    font-size: 36px;
+    font-weight: 400;
+}
+
+.system-brand p {
+    color: #666666;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.login-card-box {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 32px 24px;
+    width: 100%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.login-card-box h2 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #1c1b1f;
+    margin-bottom: 24px;
+}
+
+.login-input-field input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #ccced1;
+    background-color: #ffffff;
+    color: #1c1b1f;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.login-input-field:first-of-type input {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.login-input-field:last-of-type input {
+    border-top: none;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.login-input-field input:focus {
+    border-color: #009661;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-system-login {
+    background-color: #009661;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-system-login:hover { background-color: #007d50; }
+.login-card-links { margin-top: 20px; }
+.login-card-links a { color: #555555; font-size: 13px; text-decoration: none; }
+.login-card-links a:hover { color: #009661; text-decoration: underline; }
+.login-system-footer { margin-top: 32px; text-align: center; }
+.login-system-footer p { color: #666666; font-size: 12px; }
+
+
+/* ==========================================================================
+   5. TELA DE DASHBOARD PRINCIPAL (KPIs e GRÁFICOS)
+   ========================================================================== */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.kpi-icon .material-icons-outlined { font-size: 36px; }
+.kpi-data { display: flex; flex-direction: column; }
+.kpi-value { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+.kpi-title { font-size: 13px; color: #666666; font-weight: 500; }
+.kpi-subtitle { font-size: 11px; color: #999999; }
+
+/* Customização dos Indicadores das Caixas */
+.green-box { border-top: 4px solid #009661; color: #009661; }
+.green-box .kpi-icon { color: #009661; }
+.green-text .kpi-icon, .green-text .kpi-value { color: #009661; }
+.blue-text .kpi-icon, .blue-text .kpi-value { color: #2b6cb0; }
+.orange-text .kpi-icon, .orange-text .kpi-value { color: #f36c13; }
+
+/* Bloco dos Gráficos */
+.charts-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 992px) {
+    .charts-grid { grid-template-columns: 1fr; }
+}
+
+.chart-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.chart-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 16px; color: #1c1b1f; }
+.chart-container { position: relative; height: 260px; width: 100%; }
+.chart-container.pie-box { height: 240px; display: flex; justify-content: center; }
+
+
+/* ==========================================================================
+   6. TELA: ITENS QUE VENCEM (ESTILO CARD ANTIGO / ADAPTADO)
+   ========================================================================== */
+.cards-list-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 750px;
+    width: 100%;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-left: 5px solid transparent;
+}
+
+.card.alert-orange { border-left-color: #f36c13; }
+.card.alert-orange .due-date { color: #f36c13; }
+.card.alert-orange .progress-bar { background-color: #f36c13; }
+.card.alert-green { border-left-color: #009661; }
+.card.alert-green .due-date { color: #009661; }
+.card.alert-green .progress-bar { background-color: #009661; }
+
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+.card-header h3 { font-size: 18px; font-weight: 500; color: #1c1b1f; }
+.quantity { font-size: 14px; color: #666666; }
+.icon-alert { color: #f36c13; font-size: 24px; }
+
+.progress-container { width: 100%; height: 8px; background-color: #e0e0e0; border-radius: 4px; overflow: hidden; }
+.progress-bar { height: 100%; border-radius: 4px; }
+.due-date { font-size: 14px; font-weight: 700; }
+
+
+/* ==========================================================================
+   7. TELA: CADASTRO DE PRODUTOS / INVENTÁRIO (DESKTOP)
+   ========================================================================== */
+.product-form-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 32px;
+    max-width: 750px;
+    width: 100%;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.product-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row { display: flex; width: 100%; box-sizing: border-box; }
+.form-row.dual-row { gap: 16px; }
+.form-row.split-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.product-form-card input, 
+.product-form-card select, 
+.product-form-card textarea {
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1px solid #ccced1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #1c1b1f;
+    outline: none;
+    width: 100%;
+}
+
+.product-form-card input:focus, 
+.product-form-card select:focus, 
+.product-form-card textarea:focus {
+    border-color: #009661;
+    box-shadow: inset 0 0 0 1px #009661;
+}
+
+.btn-scan {
+    background-color: #ffffff;
+    color: #009661;
+    border: 1px solid #009661;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 100%;
+}
+.btn-scan:hover { background-color: #e8f5e9; }
+
+.product-form-card select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23666666' d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 24px;
+    padding-right: 40px;
+}
+
+.product-form-card textarea { resize: vertical; }
+
+.btn-product-submit {
+    background-color: #009661;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+.btn-product-submit:hover { background-color: #007d50; }
+
+
+/* ==========================================================================
+   8. TELA: GESTÃO DE PESSOAS (DESKTOP)
+   ========================================================================== */
+.dashboard-header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.btn-primary-action {
+    background-color: #009661;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s;
+}
+.btn-primary-action:hover { background-color: #007d50; }
+
+.contact-cell { display: flex; flex-direction: column; gap: 2px; }
+.email-sub { font-size: 12px; color: #2b6cb0; }
+
+.action-buttons { display: flex; justify-content: center; gap: 16px; }
+.action-buttons button { background: none; border: none; cursor: pointer; padding: 4px; display: flex; align-items: center; transition: transform 0.1s; }
+.action-buttons button:hover { transform: scale(1.15); }
+.btn-action-edit { color: #009661; }
+.btn-action-delete { color: #ea4335; }
+
+
+/* ==========================================================================
+   9. TELA: MOVIMENTAÇÃO DE ESTOQUE (DESKTOP)
+   ========================================================================== */
+.movimentacao-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .movimentacao-grid { grid-template-columns: 1fr; }
+}
+
+.movimentacao-card-form {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.tab-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    border: 1px solid #ccced1;
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-btn {
+    background-color: #ffffff;
+    color: #555555;
+    border: none;
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.tab-btn.active { background-color: #009661; color: #ffffff; }
+
+.date-input-wrapper { display: flex; flex-direction: column; width: 100%; gap: 4px; }
+.date-input-wrapper label { font-size: 12px; color: #666666; padding-left: 2px; }
+
+/* Histórico Lateral Direito */
+.movimentacao-historico {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    height: fit-content;
+}
+.movimentacao-historico h3 { font-size: 16px; font-weight: 500; color: #1c1b1f; margin-bottom: 16px; }
+.historico-list { display: flex; flex-direction: column; gap: 12px; }
+
+.historico-item {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-left: 4px solid #ccced1;
+}
+.historico-item.line-entrada { border-left-color: #009661; background-color: #e8f5e9; }
+.historico-item.line-saida { border-left-color: #2b6cb0; background-color: #e1effe; }
+
+.historico-info h4 { font-size: 14px; font-weight: 500; margin: 0 0 4px 0; color: #1c1b1f; }
+.historico-info p { font-size: 12px; color: #666666; margin: 0; }
+.historico-time { font-size: 11px; color: #999999; display: block; margin-top: 4px; }
+
+
+/* ==========================================================================
+   10. TELA: VISUALIZAÇÃO DE ESTOQUE (FILTROS E RODAPÉ DE RESUMO)
+   ========================================================================== */
+.stock-filters-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.search-input-wrapper { position: relative; flex: 1; }
+.search-input-wrapper input { width: 100%; padding: 12px 16px 12px 44px; font-size: 14px; border: 1px solid #ccced1; border-radius: 4px; outline: none; }
+.search-input-wrapper input:focus { border-color: #009661; }
+.search-input-wrapper .icon-search { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #888888; font-size: 20px; }
+
+.select-filter-wrapper { width: 200px; }
+.select-filter-wrapper select { width: 100%; padding: 12px 16px; font-size: 14px; border: 1px solid #ccced1; border-radius: 4px; background-color: #ffffff; cursor: pointer; outline: none; }
+
+.date-cell { display: flex; flex-direction: column; gap: 2px; }
+.days-remaining { font-size: 12px; color: #888888; }
+
+.status-indicator { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; }
+.status-indicator .material-icons-outlined { font-size: 16px; }
+
+.badge-ok { color: #137333; }
+.badge-proximo { color: #b06000; }
+.badge-urgente { color: #ea4335; font-weight: 700; }
+
+/* Rodapé / Footer de Resumo KANBAN */
+.stock-summary-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .stock-summary-footer { grid-template-columns: 1fr; }
+}
+
+.summary-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.summary-card.border-green { border-left: 4px solid #009661; }
+.summary-card.border-orange { border-left: 4px solid #f36c13; }
+.summary-card.border-red { border-left: 4px solid #ea4335; }
+
+.summary-title { font-size: 13px; color: #666666; font-weight: 500; }
+.summary-value { font-size: 24px; font-weight: 700; }
+.summary-sub { font-size: 12px; color: #999999; }
+.text-green-dark { color: #009661; }
+.text-orange-dark { color: #b06000; }
+.text-red-dark { color: #ea4335; }
+
+
+/* ==========================================================================
+   11. LEGACY / ESTILOS ANTIGOS DO APLICATIVO MOBILE (MANTIDOS POR SEGURANÇA)
+   ========================================================================== */
+.container { padding: 16px; max-width: 600px; margin: 0 auto; }
+.section-title { margin-bottom: 20px; }
+.section-title h2 { font-size: 22px; font-weight: 500; color: #1c1b1f; }
+.section-title p { font-size: 14px; color: #666666; margin-top: 4px; }
+.cards-list { display: flex; flex-direction: column; gap: 16px; }
+
+/* Formulário Mobile Antigo */
+.form-card { background-color: #ffffff; border-radius: 12px; padding: 16px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05); border: 1px solid #e0e0e0; }
+.form-card form { display: flex; flex-direction: column; }
+.input-group { width: 100%; }
+.input-group input { width: 100%; padding: 16px; font-size: 16px; border: 1px solid #b0b0b0; background-color: #ffffff; outline: none; }
+.input-group:first-child input { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+.input-group:not(:first-child):not(:last-of-type) input { border-top: none; }
+.input-group:nth-child(3) input { border-top: none; margin-bottom: 16px; }
+.input-group input:focus { border-color: #009661; box-shadow: inset 0 0 0 1px #009661; }
+.btn-submit { background-color: #009661; color: #ffffff; border: none; border-radius: 8px; padding: 16px; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; width: 100%; }
+.btn-submit:hover { background-color: #007d50; }
+
+/* Distribuição Mobile Antiga */
+.distribution-card { background-color: #ffffff; border-radius: 12px; padding: 20px 16px; border: 1px solid #e0e0e0; }
+.distribution-card h3 { font-size: 18px; font-weight: 500; color: #1c1b1f; margin-bottom: 16px; }
+.btn-distribution-group { display: flex; flex-direction: column; }
+.btn-dest { background-color: #ffffff; color: #1c1b1f; border: 1px solid #b5c4d0; padding: 20px 16px; font-size: 18px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; width: 100%; }
+.btn-dest:first-of-type { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+.btn-dest:not(:first-of-type) { border-top: none; }
+.btn-dest:last-of-type { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+.btn-dest:hover { background-color: #f1f5f9; }
+.btn-dest.active { background-color: #e8f5e9; border-color: #009661; color: #009661; font-weight: 700; position: relative; z-index: 1; box-shadow: 0 0 0 1px #009661; }
+/* Correção de largura para a tela de distribuição legada */
+.main-dashboard .distribution-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   12. NOVOS COMPONENTES — CADASTRO UNIFICADO E MOVIMENTAÇÃO COM DESTINOS
+   ========================================================================== */
+
+/* Hint descritivo no topo do formulário */
+.form-section-hint {
+    color: #555;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    background: #f5faf7;
+    border-left: 3px solid #009661;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.5;
+}
+
+/* Label acima de campos internos de formulário */
+.input-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+/* Botões de destino de saída dentro da movimentação (grid 2x2) */
+.movimentacao-card-form .btn-distribution-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.movimentacao-card-form .btn-dest {
+    background-color: #ffffff;
+    color: #555555;
+    border: 1.5px solid #ccced1;
+    border-radius: 6px;
+    padding: 12px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.movimentacao-card-form .btn-dest .material-icons-outlined {
+    font-size: 22px;
+}
+
+.movimentacao-card-form .btn-dest:hover {
+    background-color: #f1f5f9;
+    border-color: #009661;
+    color: #009661;
+}
+
+.movimentacao-card-form .btn-dest.selected {
+    border-color: #009661;
+    background-color: #e8f5e9;
+    color: #007d50;
+    font-weight: 700;
+    box-shadow: 0 0 0 1px #009661;
+}
+
+/* Ajuste: btn-submit azul para saída */
+.btn-submit-saida {
+    background-color: #2b6cb0 !important;
+}
+.btn-submit-saida:hover {
+    background-color: #1e4e8c !important;
+}
+
+/* Painel alternável do cadastro (aba produto / aba lote) */
+.cadastro-painel { width: 100%; }
+
+/* Tab container centralizado para página de cadastro */
+.tab-container.tab-cadastro-top {
+    margin: 0 auto 1.5rem auto;
+}
+
+/* Inputs do form de cadastro que usam a classe product-form-card */
+.product-form-card select,
+.product-form-card input[type="number"] {
+    -moz-appearance: textfield;
+}
+.product-form-card input[type="number"]::-webkit-inner-spin-button,
+.product-form-card input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* form-card quando usado dentro da movimentação (sem shadow redundante) */
+.movimentacao-card-form .form-card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Inputs dentro do form de movimentação — mesmo estilo do product-form-card */
+.movimentacao-card-form .input-group input,
+.movimentacao-card-form .input-group select {
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid #ccced1;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #1c1b1f;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+.movimentacao-card-form .input-group input:focus,
+.movimentacao-card-form .input-group select:focus {
+    border-color: #009661;
+    box-shadow: inset 0 0 0 1px #009661;
+}
+.movimentacao-card-form .input-group {
+    margin-bottom: 14px;
+}
+
+
+/* ==========================================================================
+   13. RESPONSIVIDADE GLOBAL CONSOLIDADA
+   ========================================================================== */
+
+/* --- Tablet (≤ 992px) --- */
+@media (max-width: 992px) {
+    .main-dashboard {
+        padding: 24px 20px;
+    }
+}
+
+/* --- Mobile grande (≤ 768px) --- */
+@media (max-width: 768px) {
+
+    /* Layout base: sidebar vira barra inferior */
+    .admin-body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        border-right: none;
+        border-top: 1px solid #e0e0e0;
+        z-index: 200;
+        overflow: hidden;
+    }
+
+    .sidebar-header { display: none; }
+
+    .sidebar-nav {
+        flex-direction: row;
+        padding: 0;
+        gap: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        flex: 1;
+    }
+    .sidebar-nav::-webkit-scrollbar { display: none; }
+
+    .side-item {
+        flex-direction: column;
+        gap: 3px;
+        padding: 8px 14px;
+        font-size: 10px;
+        white-space: nowrap;
+        min-width: 72px;
+        justify-content: center;
+        text-align: center;
+        border-left: none !important;
+        border-bottom: 3px solid transparent;
+    }
+    .side-item.active {
+        border-bottom: 3px solid #009661;
+        border-left: none;
+        background-color: #f0faf5;
+    }
+    .side-item .material-icons-outlined {
+        font-size: 22px;
+    }
+    .side-item.logout {
+        border-top: none;
+        border-left: 1px solid #e0e0e0;
+        padding-top: 8px;
+    }
+
+    .sidebar-footer {
+        border-top: none;
+        border-left: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+    }
+
+    .main-dashboard {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px 16px 90px 16px; /* padding-bottom para não cobrir a barra */
+    }
+
+    /* Dashboard KPIs: 2 colunas */
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Gráficos: 1 coluna */
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Movimentação: 1 coluna */
+    .movimentacao-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Botões de destino: 2x2 já definido, mantém */
+
+    /* Header com botão (pessoas) */
+    .dashboard-header-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .btn-primary-action {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Filtros de estoque em coluna */
+    .stock-filters-row {
+        flex-direction: column;
+    }
+    .select-filter-wrapper {
+        width: 100%;
+    }
+
+    /* Resumo de estoque: 1 coluna */
+    .stock-summary-footer {
+        grid-template-columns: 1fr;
+    }
+
+    /* Formulário duplo/split em coluna */
+    .form-row.dual-row,
+    .form-row.split-row {
+        flex-direction: column;
+        display: flex;
+        grid-template-columns: unset;
+        gap: 12px;
+    }
+    .form-row.dual-row > *,
+    .form-row.split-row > * {
+        width: 100%;
+    }
+
+    /* Table: scroll horizontal garantido */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Filtros do dashboard */
+    .table-filters {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    /* Product form card ocupa tudo */
+    .product-form-card {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+
+    /* Tab cadastro */
+    .tab-container {
+        width: 100%;
+    }
+    .tab-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+}
+
+/* --- Mobile pequeno (≤ 480px) --- */
+@media (max-width: 480px) {
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .movimentacao-card-form .btn-distribution-group {
+        grid-template-columns: 1fr;
+    }
+
+    .kpi-card {
+        padding: 14px;
+    }
+    .kpi-value {
+        font-size: 22px;
+    }
+
+    .dashboard-header h2 {
+        font-size: 20px;
+    }
+}

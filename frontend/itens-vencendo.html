@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Itens que Vencem</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        <header class="dashboard-header text-center-mobile">
+            <h2>Itens que Vencem em Breve</h2>
+            <p>Priorize a distribuição dos itens próximos ao vencimento</p>
+        </header>
+
+        <div class="cards-list-admin">
+            
+            <div class="card alert-orange">
+                <div class="card-header">
+                    <div>
+                        <h3>Arroz Branco</h3>
+                        <span class="quantity">Quantidade: 45 unidades</span>
+                    </div>
+                    <span class="material-icons-outlined icon-alert">warning</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                <span class="due-date">2 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Tomate Enlatado</h3>
+                        <span class="quantity">Quantidade: 28 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 65%;"></div>
+                </div>
+                <span class="due-date">5 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Macarrão Penne</h3>
+                        <span class="quantity">Quantidade: 32 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 55%;"></div>
+                </div>
+                <span class="due-date">7 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-orange">
+                <div class="card-header">
+                    <div>
+                        <h3>Feijão Preto</h3>
+                        <span class="quantity">Quantidade: 18 unidades</span>
+                    </div>
+                    <span class="material-icons-outlined icon-alert">warning</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 75%;"></div>
+                </div>
+                <span class="due-date">3 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Azeite de Oliva</h3>
+                        <span class="quantity">Quantidade: 12 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+                <span class="due-date">10 dias até o vencimento</span>
+            </div>
+
+            <div class="card alert-green">
+                <div class="card-header">
+                    <div>
+                        <h3>Lentilha Vermelha</h3>
+                        <span class="quantity">Quantidade: 25 unidades</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 70%;"></div>
+                </div>
+                <span class="due-date">4 dias até o vencimento</span>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

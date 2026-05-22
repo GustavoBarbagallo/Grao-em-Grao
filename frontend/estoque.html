@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Visualização de Estoque</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        <header class="dashboard-header">
+            <h2>Visualização de Estoque</h2>
+            <p>Consulte o estoque atual com informações de lote e validade</p>
+        </header>
+
+        <div class="stock-filters-row">
+            <div class="search-input-wrapper">
+                <span class="material-icons-outlined icon-search">search</span>
+                <input type="text" id="search-stock" placeholder="Buscar por produto ou lote...">
+            </div>
+            
+            <div class="select-filter-wrapper">
+                <select id="filter-status">
+                    <option value="todos">Todos os Status</option>
+                    <option value="ok">Ok</option>
+                    <option value="proximo">Próximo</option>
+                    <option value="urgente">Urgente</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="table-card max-width-layout">
+            <div class="table-responsive">
+                <table class="system-table stock-table">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Categoria</th>
+                            <th>Quantidade</th>
+                            <th>Lote</th>
+                            <th>Validade</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Arroz Branco</td>
+                            <td class="text-muted">Grãos</td>
+                            <td>245 kg</td>
+                            <td>L001</td>
+                            <td>
+                                <div class="date-cell">
+                                    <span>30/12/2026</span>
+                                    <span class="days-remaining">(225 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-ok"><span class="material-icons-outlined">check_circle</span> Ok</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Feijão Preto</td>
+                            <td class="text-muted">Grãos</td>
+                            <td>180 kg</td>
+                            <td>L002</td>
+                            <td>
+                                <div class="date-cell">
+                                    <span>15/11/2026</span>
+                                    <span class="days-remaining">(180 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-ok"><span class="material-icons-outlined">check_circle</span> Ok</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Tomate Enlatado</td>
+                            <td class="text-muted">Enlatados</td>
+                            <td>120 un</td>
+                            <td>L003</td>
+                            <td>
+                                <div class="date-cell text-orange">
+                                    <span>25/05/2026</span>
+                                    <span class="days-remaining">(6 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-proximo"><span class="material-icons-outlined">report_problem</span> Próximo</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Azeite de Oliva</td>
+                            <td class="text-muted">Óleos</td>
+                            <td>45 L</td>
+                            <td>L004</td>
+                            <td>
+                                <div class="date-cell text-orange">
+                                    <span>28/05/2026</span>
+                                    <span class="days-remaining">(9 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-proximo"><span class="material-icons-outlined">report_problem</span> Próximo</span></td>
+                        </tr>
+                        <tr class="row-urgent">
+                            <td class="font-medium">Macarrão Penne</td>
+                            <td class="text-muted">Massas</td>
+                            <td>95 kg</td>
+                            <td>L005</td>
+                            <td>
+                                <div class="date-cell text-red">
+                                    <span>22/05/2026</span>
+                                    <span class="days-remaining">(3 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-urgente"><span class="material-icons-outlined">dangerous</span> Urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Feijão Carioca</td>
+                            <td class="text-muted">Grãos</td>
+                            <td>160 kg</td>
+                            <td>L006</td>
+                            <td>
+                                <div class="date-cell">
+                                    <span>10/08/2026</span>
+                                    <span class="days-remaining">(83 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-ok"><span class="material-icons-outlined">check_circle</span> Ok</span></td>
+                        </tr>
+                        <tr class="row-urgent">
+                            <td class="font-medium">Óleo de Soja</td>
+                            <td class="text-muted">Óleos</td>
+                            <td>78 L</td>
+                            <td>L007</td>
+                            <td>
+                                <div class="date-cell text-red">
+                                    <span>21/05/2026</span>
+                                    <span class="days-remaining">(2 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-urgente"><span class="material-icons-outlined">dangerous</span> Urgente</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Açúcar Cristal</td>
+                            <td class="text-muted">Açúcares</td>
+                            <td>200 kg</td>
+                            <td>L008</td>
+                            <td>
+                                <div class="date-cell">
+                                    <span>15/01/2027</span>
+                                    <span class="days-remaining">(241 dias)</span>
+                                </div>
+                            </td>
+                            <td><span class="status-indicator badge-ok"><span class="material-icons-outlined">check_circle</span> Ok</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="stock-summary-footer">
+            <div class="summary-card border-green">
+                <span class="summary-title">Total em Estoque</span>
+                <span class="summary-value text-green-dark">1123</span>
+                <span class="summary-sub">itens registrados</span>
+            </div>
+            
+            <div class="summary-card border-orange">
+                <span class="summary-title">Próximos ao Vencimento</span>
+                <span class="summary-value text-orange-dark">2</span>
+                <span class="summary-sub">produtos (até 10 dias)</span>
+            </div>
+
+            <div class="summary-card border-red">
+                <span class="summary-title">Vencimento Urgente</span>
+                <span class="summary-value text-red-dark">2</span>
+                <span class="summary-sub">produtos (até 3 dias)</span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

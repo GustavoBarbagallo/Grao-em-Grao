@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Entrar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * { box-sizing: border-box; }
+        @media (max-width: 480px) {
+            .login-wrapper { padding: 1rem; }
+            .login-card-box { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body class="login-body-page">
+
+    <div class="login-wrapper">
+        
+        <div class="system-brand">
+            <h1>De Grão em Grão</h1>
+            <p>Sistema de Gestão de Banco de Alimentos</p>
+        </div>
+
+        <div class="login-card-box">
+            <h2>Entrar no Sistema</h2>
+            
+            <form id="login-form">
+                <div class="login-input-field">
+                    <input type="text" id="login-identifier" placeholder="CPF/CNPJ *" required>
+                </div>
+
+                <div class="login-input-field">
+                    <input type="password" id="login-password" placeholder="Senha *" required>
+                </div>
+
+                <button type="submit" class="btn-system-login">
+                    <span class="material-icons-outlined">login</span>
+                    Entrar
+                </button>
+            </form>
+
+            <div class="login-card-links">
+                <a href="#">Esqueci minha senha</a>
+            </div>
+        </div>
+
+        <footer class="login-system-footer">
+            <p>&copy; 2026 De Grão em Grão - Todos os direitos reservados</p>
+        </footer>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Cadastro de Produtos</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+    <style>
+        .form-section-hint {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            padding: 0.75rem 1rem;
+            background: #f5f5f5;
+            border-left: 3px solid #4caf50;
+            border-radius: 0 4px 4px 0;
+        }
+        .input-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .btn-dest.selected {
+            border-color: #4caf50 !important;
+            background: #e8f5e9 !important;
+            color: #2e7d32 !important;
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        <header class="dashboard-header">
+            <h2>Cadastro de Produtos</h2>
+            <p>Registre novos produtos no catálogo e adicione lotes ao inventário</p>
+        </header>
+
+        <!-- Tab switcher -->
+        <div class="tab-container" style="max-width:860px; margin: 0 auto 1.5rem auto;">
+            <button type="button" class="tab-btn active" id="tab-produto" onclick="switchCadastroTab('produto', this)">
+                <span class="material-icons-outlined">inventory_2</span> Novo Produto
+            </button>
+            <button type="button" class="tab-btn" id="tab-lote" onclick="switchCadastroTab('lote', this)">
+                <span class="material-icons-outlined">add_circle_outline</span> Adicionar ao Inventário
+            </button>
+        </div>
+
+        <!-- Painel: Cadastro de produto novo no catálogo -->
+        <div id="painel-produto" class="cadastro-painel" style="max-width:860px; margin: 0 auto;">
+            <div class="product-form-card">
+                <p class="form-section-hint">Cadastre um novo tipo de produto no catálogo. Após cadastrado, ele estará disponível para lançamentos de estoque.</p>
+                <form id="inventory-form">
+
+                    <div class="form-row block-row">
+                        <input type="text" id="product-name" placeholder="Nome do Produto *" required>
+                    </div>
+
+                    <div class="form-row split-row">
+                        <input type="text" id="product-gtin" placeholder="GTIN / Código de Barras">
+                        <button type="button" class="btn-scan" id="btn-trigger-scan">
+                            <span class="material-icons-outlined">qr_code_scanner</span>
+                            Escanear Código
+                        </button>
+                    </div>
+
+                    <div class="form-row dual-row">
+                        <select id="product-category" required>
+                            <option value="" disabled selected>Categoria *</option>
+                            <option value="graos">Grãos</option>
+                            <option value="enlatados">Enlatados</option>
+                            <option value="oleos">Óleos</option>
+                            <option value="massas">Massas</option>
+                            <option value="acucares">Açúcares</option>
+                            <option value="outros">Outros</option>
+                        </select>
+
+                        <select id="product-unit" required>
+                            <option value="" disabled selected>Unidade/Peso *</option>
+                            <option value="un">Unidade (un)</option>
+                            <option value="kg">Quilo (kg)</option>
+                            <option value="g">Gramas (g)</option>
+                            <option value="l">Litro (l)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row block-row">
+                        <textarea id="product-description" rows="3" placeholder="Descrição (opcional)"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-product-submit">
+                        <span class="material-icons-outlined">add_circle_outline</span>
+                        Cadastrar Produto
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Painel: Adicionar lote/entrada ao inventário -->
+        <div id="painel-lote" class="cadastro-painel" style="max-width:860px; margin: 0 auto; display:none;">
+            <div class="product-form-card">
+                <p class="form-section-hint">Registre a entrada de um lote de produto já cadastrado no catálogo. Informe o produto, validade e quantidade recebida.</p>
+                <form id="registro-rapido-form">
+
+                    <div class="form-row block-row">
+                        <select id="reg-product" required>
+                            <option value="" disabled selected>Produto *</option>
+                            <option>Arroz Branco</option>
+                            <option>Feijão Preto</option>
+                            <option>Feijão Carioca</option>
+                            <option>Tomate Enlatado</option>
+                            <option>Azeite de Oliva</option>
+                            <option>Óleo de Soja</option>
+                            <option>Macarrão Penne</option>
+                            <option>Açúcar Cristal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row dual-row">
+                        <input type="text" id="reg-lote" placeholder="Número do Lote (ex: L010)">
+                        <input type="date" id="reg-validade" placeholder="Data de Validade *" required>
+                    </div>
+
+                    <div class="form-row dual-row">
+                        <input type="number" id="reg-quantidade" placeholder="Quantidade *" min="1" required>
+                        <select id="reg-unidade">
+                            <option value="un">Unidade (un)</option>
+                            <option value="kg">Quilo (kg)</option>
+                            <option value="g">Gramas (g)</option>
+                            <option value="l">Litro (l)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row block-row">
+                        <input type="text" id="reg-doador" placeholder="Doador / Origem (opcional)">
+                    </div>
+
+                    <button type="submit" class="btn-product-submit">
+                        <span class="material-icons-outlined">add_circle_outline</span>
+                        Adicionar ao Inventário
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        function switchCadastroTab(tab, el) {
+            document.querySelectorAll('.cadastro-painel').forEach(p => p.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('painel-' + tab).style.display = 'block';
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>

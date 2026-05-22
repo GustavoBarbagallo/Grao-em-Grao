@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Movimentação de Estoque</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+    <style>
+        .form-section-hint {
+            color: #666;
+            font-size: 0.875rem;
+            margin-bottom: 1.25rem;
+            padding: 0.75rem 1rem;
+            background: #f5f5f5;
+            border-left: 3px solid #4caf50;
+            border-radius: 0 4px 4px 0;
+        }
+        .input-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .btn-dest.selected {
+            border-color: #4caf50 !important;
+            background: #e8f5e9 !important;
+            color: #2e7d32 !important;
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        <header class="dashboard-header">
+            <h2>Movimentação de Estoque</h2>
+            <p>Registre entradas e saídas de produtos</p>
+        </header>
+
+        <div class="movimentacao-grid">
+
+            <div class="movimentacao-card-form">
+                <div class="tab-container">
+                    <button type="button" class="tab-btn active" id="tab-entrada" onclick="switchMovTab('entrada', this)">
+                        <span class="material-icons-outlined">trending_up</span> Entrada
+                    </button>
+                    <button type="button" class="tab-btn" id="tab-saida" onclick="switchMovTab('saida', this)">
+                        <span class="material-icons-outlined">trending_down</span> Saída
+                    </button>
+                </div>
+
+                <!-- Formulário Entrada -->
+                <form id="form-entrada" class="form-card mov-form-painel">
+                    <div class="input-group">
+                        <input type="text" placeholder="Nome do Produto *" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Número do Lote">
+                    </div>
+                    <div class="input-group">
+                        <input type="number" placeholder="Quantidade *" min="1" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" placeholder="Doador / Origem">
+                    </div>
+                    <button type="submit" class="btn-submit" id="btn-submit-entrada">
+                        <span class="material-icons-outlined">save</span> Registrar Entrada
+                    </button>
+                </form>
+
+                <!-- Formulário Saída -->
+                <form id="form-saida" class="form-card mov-form-painel" style="display:none;">
+                    <div class="input-group">
+                        <input type="text" placeholder="Nome do Produto *" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" placeholder="Quantidade *" min="1" required>
+                    </div>
+
+                    <!-- Tipo de Saída (incorporado da pág. Distribuição) -->
+                    <div class="input-group">
+                        <label class="input-label">Tipo de Saída *</label>
+                        <div class="btn-distribution-group">
+                            <button type="button" class="btn-dest" onclick="selectDestination(this)">
+                                <span class="material-icons-outlined">restaurant</span>
+                                Cozinha Local
+                            </button>
+                            <button type="button" class="btn-dest" onclick="selectDestination(this)">
+                                <span class="material-icons-outlined">people</span>
+                                Doação Familiar
+                            </button>
+                            <button type="button" class="btn-dest" onclick="selectDestination(this)">
+                                <span class="material-icons-outlined">swap_horiz</span>
+                                Transferência entre ONGs
+                            </button>
+                            <button type="button" class="btn-dest" onclick="selectDestination(this)">
+                                <span class="material-icons-outlined">delete</span>
+                                Descarte
+                            </button>
+                        </div>
+                        <input type="hidden" id="tipo-saida-value" required>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" placeholder="Responsável / Observação">
+                    </div>
+
+                    <button type="submit" class="btn-submit btn-submit-saida" id="btn-submit-saida">
+                        <span class="material-icons-outlined">save</span> Registrar Saída
+                    </button>
+                </form>
+            </div>
+
+            <div class="movimentacao-historico">
+                <h3>Histórico Recente</h3>
+
+                <div class="historico-list">
+                    <div class="historico-item line-entrada">
+                        <div class="historico-info">
+                            <h4>Arroz Branco</h4>
+                            <p>Qtd: 50 | Lote: L001</p>
+                            <p>João Silva</p>
+                            <span class="historico-time">19/05/2026 14:30</span>
+                        </div>
+                        <span class="badge badge-entrada">Entrada</span>
+                    </div>
+
+                    <div class="historico-item line-saida">
+                        <div class="historico-info">
+                            <h4>Feijão Preto</h4>
+                            <p>Qtd: 25 | Doação Familiar</p>
+                            <p>Maria Santos</p>
+                            <span class="historico-time">19/05/2026 13:15</span>
+                        </div>
+                        <span class="badge badge-saida">Saída</span>
+                    </div>
+
+                    <div class="historico-item line-entrada">
+                        <div class="historico-info">
+                            <h4>Azeite de Oliva</h4>
+                            <p>Qtd: 15 | Lote: L003</p>
+                            <p>Pedro Costa</p>
+                            <span class="historico-time">18/05/2026 16:45</span>
+                        </div>
+                        <span class="badge badge-entrada">Entrada</span>
+                    </div>
+
+                    <div class="historico-item line-saida">
+                        <div class="historico-info">
+                            <h4>Macarrão Penne</h4>
+                            <p>Qtd: 30 | Cozinha Local</p>
+                            <p>Ana Lima</p>
+                            <span class="historico-time">18/05/2026 11:00</span>
+                        </div>
+                        <span class="badge badge-saida">Saída</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        function switchMovTab(tab, el) {
+            document.querySelectorAll('.mov-form-painel').forEach(p => p.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('form-' + tab).style.display = 'block';
+            el.classList.add('active');
+        }
+
+        function selectDestination(btn) {
+            document.querySelectorAll('.btn-dest').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('tipo-saida-value').value = btn.textContent.trim();
+        }
+    </script>
+</body>
+</html>

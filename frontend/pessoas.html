@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De Grão em Grão - Gestão de Pessoas</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ===== RESPONSIVE OVERRIDES ===== */
+        * { box-sizing: border-box; }
+
+        /* Sidebar collapse on mobile */
+        @media (max-width: 768px) {
+            .admin-body { display: block !important; }
+
+            .sidebar {
+                position: fixed !important;
+                bottom: 0; left: 0; right: 0;
+                width: 100% !important;
+                height: 60px !important;
+                flex-direction: row !important;
+                z-index: 100;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .main-dashboard {
+                margin-left: 0 !important;
+                padding: 1rem !important;
+                padding-bottom: 76px !important;
+            }
+
+            /* KPI grid */
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Charts grid */
+            .charts-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Movimentação grid */
+            .movimentacao-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Distribution buttons */
+            .btn-distribution-group {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            /* Form rows */
+            .dual-row, .split-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .dual-row > *, .split-row > * { width: 100% !important; }
+
+            /* Table */
+            .table-responsive { overflow-x: auto; }
+
+            /* Stock filters */
+            .stock-filters-row {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            .stock-filters-row > * { width: 100% !important; }
+
+            /* Stock summary footer */
+            .stock-summary-footer {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Dashboard header action */
+            .dashboard-header-action {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .btn-distribution-group {
+                grid-template-columns: 1fr !important;
+            }
+            .table-filters {
+                flex-direction: column !important;
+                gap: 0.5rem !important;
+            }
+        }
+    </style>
+
+</head>
+<body class="admin-body">
+
+    <aside class="sidebar" id="dynamic-sidebar"></aside>
+
+    <main class="main-dashboard">
+        
+        <header class="dashboard-header-action">
+            <div class="header-text">
+                <h2>Gestão de Pessoas</h2>
+                <p>Gerencie doadores, receptores, voluntários e usuários do sistema</p>
+            </div>
+            <button class="btn-primary-action" id="btn-novo-cadastro">
+                <span class="material-icons-outlined">add</span>
+                Novo Cadastro
+            </button>
+        </header>
+
+        <section class="table-card max-width-layout">
+            <div class="table-responsive">
+                <table class="system-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Contato</th>
+                            <th>Perfis</th>
+                            <th>Acesso</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-medium">Usuário Um</td>
+                            <td class="text-muted">123.456.789-01</td>
+                            <td>
+                                <div class="contact-cell">
+                                    <span>(11) 91111-1111</span>
+                                    <span class="email-sub">usuario1@email.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="badge-group">
+                                    <span class="badge badge-doador">Doador</span>
+                                    <span class="badge badge-voluntario">Voluntário</span>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-acesso-user">Usuário</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action-edit" title="Editar"><span class="material-icons-outlined">edit</span></button>
+                                    <button class="btn-action-delete" title="Excluir"><span class="material-icons-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Usuário Dois</td>
+                            <td class="text-muted">234.567.890-12</td>
+                            <td>
+                                <div class="contact-cell">
+                                    <span>(11) 92222-2222</span>
+                                    <span class="email-sub">usuario2@email.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="badge-group">
+                                    <span class="badge badge-receptor">Receptor</span>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-acesso-user">Usuário</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action-edit" title="Editar"><span class="material-icons-outlined">edit</span></button>
+                                    <button class="btn-action-delete" title="Excluir"><span class="material-icons-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Administrador Sistema</td>
+                            <td class="text-muted">345.678.901-23</td>
+                            <td>
+                                <div class="contact-cell">
+                                    <span>(11) 93333-3333</span>
+                                    <span class="email-sub">admin@degrao.com</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="badge-group">
+                                    <span class="badge badge-voluntario">Voluntário</span>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-acesso-admin">Admin</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn-action-edit" title="Editar"><span class="material-icons-outlined">edit</span></button>
+                                    <button class="btn-action-delete" title="Excluir"><span class="material-icons-outlined">delete</span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
