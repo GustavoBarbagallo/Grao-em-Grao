@@ -12,13 +12,10 @@ import java.util.List;
 @Repository
 public interface MovimentacaoEstoqueRepository extends JpaRepository<MovimentacaoEstoque, Integer> {
 
-    // Busca por pessoa
     List<MovimentacaoEstoque> findByPessoaIdPessoa(Integer idPessoa);
 
-    // Busca por tipo (ENTRADA ou SAIDA)
     List<MovimentacaoEstoque> findByTipoMovimentacao(MovimentacaoEstoque.TipoMovimentacao tipo);
 
-    // Busca por período
     @Query("SELECT m FROM MovimentacaoEstoque m " +
            "WHERE m.dataHoraMovimentacao BETWEEN :inicio AND :fim " +
            "ORDER BY m.dataHoraMovimentacao DESC")
@@ -26,9 +23,8 @@ public interface MovimentacaoEstoqueRepository extends JpaRepository<Movimentaca
             @Param("inicio") LocalDateTime inicio,
             @Param("fim") LocalDateTime fim);
 
-    // Total distribuído no período (saídas)
     @Query("SELECT COALESCE(SUM(m.quantidadeMovimentada), 0) FROM MovimentacaoEstoque m " +
-           "WHERE m.tipoMovimentacao = 'SAIDA' " +
+           "WHERE m.tipoMovimentacao = com.degraoEmgrao.model.MovimentacaoEstoque.TipoMovimentacao.SAIDA " +
            "AND m.dataHoraMovimentacao BETWEEN :inicio AND :fim")
     Double totalDistribuidoNoPeriodo(
             @Param("inicio") LocalDateTime inicio,
