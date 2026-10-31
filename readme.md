@@ -23,11 +23,11 @@ Essa relação descreve o propósito do projeto, não um impacto medido: a demon
 
 ## Capturas de tela
 
-As capturas disponíveis estão na pasta `assets/`. Ainda não há uma captura da página de estoque no repositório.
+As capturas disponíveis estão na pasta `assets/`.
 
-| Landing page | Dashboard | Estoque |
+| Landing page | Dashboard |
 |---|---|---|
-| ![Captura da landing page](<./assets/captura (2).png>) | ![Captura do dashboard](<./assets/captura (1).png>) | Captura ainda não adicionada |
+| ![Captura da landing page](<./assets/captura (2).png>) | ![Captura do dashboard](<./assets/captura (1).png>) |
 
 ## Tecnologias
 
@@ -97,14 +97,6 @@ O login acima é exclusivamente demonstrativo: a validação é feita no JavaScr
 O dashboard, os registros das tabelas e os cartões exibem conteúdo de exemplo. Os filtros de estoque, a navegação, a troca de abas, a seleção do destino e as validações visuais funcionam no frontend. O envio dos formulários apresenta mensagens de sucesso e reinicia os campos, mas não salva dados. A leitura de código de barras é simulada; cadastro, edição e exclusão de pessoas também não são persistidos.
 
 O repositório contém uma API Spring Boot com endpoints de itens, movimentações, pessoas e indicadores do dashboard. Embora exista um cliente HTTP base no JavaScript, as telas descritas acima não estão conectadas a essa API. Executar o backend não transforma os dados demonstrativos em dados persistidos. A inicialização da API depende de configurar e validar o datasource e o banco de dados no ambiente local; este README não pressupõe que essa integração esteja pronta.
-
-## Integrantes e contribuições
-
-Os nomes dos integrantes e suas contribuições não estão documentados nos arquivos consultados. Preencha a tabela antes da entrega final; não foram inferidos nomes a partir do histórico de alterações do Git.
-
-| Integrante | Contribuição |
-|---|---|
-| [Nome do(a) integrante — preencher] | [Descrever a contribuição — preencher] |
 
 ## Limitações da versão demonstrativa
 
