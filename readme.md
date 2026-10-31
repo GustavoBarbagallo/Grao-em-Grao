@@ -41,3 +41,21 @@ O design foi construído seguindo as diretrizes do **Material Design 3**, utiliz
 ### Back-end & Banco de Dados *(Em Desenvolvimento)*
 * **Java** (Regras de negócio e integração)
 * **SQL / Banco de Dados** (Persistência e modelagem dos dados)
+
+---
+
+## Executar a integração local
+
+1. Inicie o MySQL com os dados de demonstração:
+   ```powershell
+   docker compose -f docker\docker-compose.yaml up -d
+   ```
+   O script `docker/init.sql` cria os registros de demonstração na primeira inicialização do volume.
+2. Em outro terminal, inicie o backend:
+   ```powershell
+   cd backend
+   mvn spring-boot:run
+   ```
+   A API fica disponível em `http://localhost:8080`.
+3. Sirva a pasta `frontend` com o Live Server do VS Code e abra `index.html`. Os botões **Acessar Portal / Login** abrem `login.html`.
+4. Para testar o login com a conta administrativa de demonstração de `docker/init.sql`, use documento `00000000000` e senha `admin123`. Um login válido abre `dashboard.html`; documento ou senha incorretos e backend indisponível exibem mensagens na tela.

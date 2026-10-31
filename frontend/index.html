@@ -1,58 +1,471 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De Grão em Grão - Entrar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        * { box-sizing: border-box; }
-        @media (max-width: 480px) {
-            .login-wrapper { padding: 1rem; }
-            .login-card-box { padding: 1.5rem 1rem; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De Grão em Grão — Conectando doação, gestão e famílias contra o desperdício</title>
+  <meta name="description" content="De Grão em Grão conecta empresas doadoras, ONGs e famílias em uma rede eficiente de combate ao desperdício de alimentos, com triagem responsável e retirada inteligente." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/landing.css" />
 </head>
-<body class="login-body-page">
+<body>
 
-    <div class="login-wrapper">
-        
-        <div class="system-brand">
-            <h1>De Grão em Grão</h1>
-            <p>Sistema de Gestão de Banco de Alimentos</p>
-        </div>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
 
-        <div class="login-card-box">
-            <h2>Entrar no Sistema</h2>
-            
-            <form id="login-form">
-                <div class="login-input-field">
-                    <input type="text" id="login-identifier" placeholder="CPF/CNPJ *" required>
-                </div>
+  <!-- ======================= HEADER / NAVBAR ======================= -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegação principal">
+      <a href="#inicio" class="brand">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="20" cy="20" r="20" fill="#2A5B46"/>
+          <path d="M20 8C20 8 12 14.5 12 22.5C12 27.19 15.58 31 20 31C24.42 31 28 27.19 28 22.5C28 14.5 20 8 20 8Z" fill="#F4C430"/>
+          <path d="M20 12C20 12 15.5 16.8 15.5 22.2C15.5 25.4 17.46 28 20 28" stroke="#2A5B46" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        De Grão em Grão
+      </a>
 
-                <div class="login-input-field">
-                    <input type="password" id="login-password" placeholder="Senha *" required>
-                </div>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#impacto">Impacto</a></li>
+      </ul>
 
-                <button type="submit" class="btn-system-login">
-                    <span class="material-icons-outlined">login</span>
-                    Entrar
-                </button>
-            </form>
+      <a href="login.html" class="btn-primary nav-cta">Acessar Portal / Login</a>
 
-            <div class="login-card-links">
-                <a href="#">Esqueci minha senha</a>
+      <input type="checkbox" id="nav-check" aria-hidden="true" />
+      <label for="nav-check" class="nav-toggle" aria-label="Abrir menu de navegação" role="button" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </label>
+
+      <div class="mobile-menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#impacto">Impacto</a>
+        <a href="login.html" class="btn-primary">Acessar Portal / Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <!-- ======================= HERO ======================= -->
+    <section class="hero" id="inicio">
+      <div class="hero-texture" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Rede de combate ao desperdício</span>
+          <h1>Transformando o combate ao <span class="accent">desperdício</span> em comida na mesa</h1>
+          <p class="hero-lead">
+            A De Grão em Grão liga empresas com excedente de alimentos a ONGs que fazem a triagem
+            responsável e a famílias que retiram exatamente o que precisam — tudo rastreado, do doador ao prato.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#doar" class="btn-primary">Quero Doar Alimentos</a>
+            <a href="#beneficiario" class="btn-secondary">Sou uma ONG/Beneficiário</a>
+          </div>
+
+          <div class="hero-proof">
+            <div class="hero-proof-item">
+              <strong>120+</strong>
+              <span>empresas doadoras ativas</span>
             </div>
+            <div class="hero-proof-item">
+              <strong>38</strong>
+              <span>ONGs parceiras certificadas</span>
+            </div>
+            <div class="hero-proof-item">
+              <strong>4,6k</strong>
+              <span>famílias cadastradas</span>
+            </div>
+          </div>
         </div>
 
-        <footer class="login-system-footer">
-            <p>&copy; 2026 De Grão em Grão - Todos os direitos reservados</p>
-        </footer>
+        <div class="hero-visual">
+          <div>
+            <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-illustration-title">
+              <title id="hero-illustration-title">Ilustração de uma cesta sendo enchida com grãos coloridos, simbolizando doações acumuladas grão a grão</title>
 
+              <!-- Cesta -->
+              <path d="M78,160 C82,270 100,352 140,432 L260,432 C300,352 318,270 322,160 Z"
+                    fill="#FFFFFF" stroke="#CFC7B4" stroke-width="2"/>
+              <g stroke="#CFC7B4" stroke-width="1.2" opacity="0.55">
+                <path d="M83,190 C140,205 260,205 317,190" fill="none"/>
+                <path d="M89,225 C150,240 250,240 311,225" fill="none"/>
+                <path d="M96,260 C155,273 245,273 304,260" fill="none"/>
+                <path d="M104,295 C160,306 240,306 296,295" fill="none"/>
+                <path d="M113,330 C165,340 235,340 287,330" fill="none"/>
+                <path d="M124,365 C170,373 230,373 276,365" fill="none"/>
+                <path d="M136,398 C176,404 224,404 264,398" fill="none"/>
+              </g>
+              <ellipse cx="200" cy="160" rx="122" ry="15" fill="#F4EFE1" stroke="#CFC7B4" stroke-width="2"/>
+
+              <!-- Grãos -->
+              <g class="grain-float">
+          <circle cx="91.3" cy="155.2" r="10.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="114.5" cy="156.9" r="8.7" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="131.9" cy="157.5" r="8.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="156.5" cy="160.6" r="8.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="179.6" cy="161.6" r="10.2" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="203.8" cy="154.4" r="11.1" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="218.6" cy="154.9" r="9.4" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="240.4" cy="158.7" r="10.4" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="264.7" cy="154.5" r="8.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="287.3" cy="157.4" r="9.4" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="306.9" cy="156.4" r="10.9" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="95.5" cy="176.5" r="10.1" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="122.2" cy="174.2" r="11.4" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="142.5" cy="177.9" r="9.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="162.2" cy="177.2" r="10.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="191.7" cy="174.4" r="10.6" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="212.2" cy="175.5" r="11.0" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="234.1" cy="177.2" r="8.7" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="258.3" cy="179.8" r="11.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="279.0" cy="177.2" r="8.6" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="300.1" cy="172.8" r="8.7" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="98.3" cy="191.7" r="9.7" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="119.9" cy="193.3" r="10.1" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="147.8" cy="196.6" r="9.3" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="166.1" cy="196.8" r="11.4" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="186.7" cy="191.6" r="9.2" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="212.0" cy="191.8" r="8.5" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="232.2" cy="194.3" r="11.4" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="255.4" cy="194.7" r="10.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="280.5" cy="196.0" r="11.1" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="298.4" cy="192.9" r="8.8" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="101.5" cy="208.1" r="9.1" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="124.9" cy="208.0" r="8.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="144.2" cy="210.5" r="8.6" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="169.5" cy="208.8" r="9.3" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="188.7" cy="208.6" r="11.0" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="210.7" cy="211.5" r="8.8" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="230.9" cy="209.7" r="11.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="249.6" cy="215.2" r="10.1" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="274.9" cy="207.8" r="10.1" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="298.7" cy="213.2" r="9.3" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="107.2" cy="231.6" r="10.1" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="131.2" cy="227.3" r="10.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="158.0" cy="231.9" r="11.0" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="175.7" cy="229.6" r="9.6" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="196.8" cy="227.7" r="9.3" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="226.9" cy="229.0" r="11.3" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="249.5" cy="228.4" r="9.2" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="266.1" cy="227.1" r="10.4" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="293.9" cy="229.3" r="10.5" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="110.2" cy="248.6" r="11.2" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="137.3" cy="247.2" r="9.0" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="155.8" cy="249.7" r="11.4" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="178.1" cy="250.9" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="197.7" cy="244.5" r="11.2" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="219.6" cy="249.9" r="11.4" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="243.0" cy="247.7" r="8.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="269.8" cy="248.5" r="10.1" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="287.2" cy="250.3" r="11.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="116.6" cy="263.5" r="9.2" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="140.1" cy="264.6" r="8.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="164.4" cy="264.9" r="10.3" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="188.4" cy="268.5" r="10.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="212.7" cy="261.3" r="9.8" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="232.1" cy="267.6" r="9.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="261.4" cy="265.7" r="9.5" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="283.5" cy="267.5" r="8.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="120.2" cy="281.3" r="10.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="145.2" cy="285.1" r="11.2" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="168.1" cy="283.1" r="10.0" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="189.3" cy="283.3" r="9.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="213.8" cy="286.1" r="11.3" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="235.2" cy="286.6" r="11.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="254.2" cy="282.6" r="8.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="276.3" cy="284.4" r="10.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="123.1" cy="302.7" r="10.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="150.4" cy="304.7" r="9.2" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="168.0" cy="300.8" r="11.5" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="187.6" cy="300.4" r="10.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="209.4" cy="299.5" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="233.7" cy="300.5" r="8.6" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="255.8" cy="301.0" r="8.7" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="278.6" cy="304.7" r="8.8" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="127.2" cy="321.0" r="9.3" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="153.7" cy="322.1" r="11.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="175.0" cy="322.2" r="10.2" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="197.9" cy="315.3" r="10.6" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="221.2" cy="322.3" r="10.4" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="244.7" cy="321.6" r="8.7" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="271.1" cy="317.5" r="10.2" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="132.6" cy="333.7" r="10.1" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="153.6" cy="334.0" r="8.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="177.5" cy="335.1" r="10.8" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="201.3" cy="334.1" r="9.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="221.6" cy="332.8" r="10.7" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="243.4" cy="336.5" r="11.3" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="270.7" cy="336.1" r="10.0" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="137.2" cy="354.6" r="10.6" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="157.9" cy="357.2" r="10.6" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="179.6" cy="353.3" r="8.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="198.0" cy="356.5" r="9.3" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="219.3" cy="357.3" r="11.1" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="242.0" cy="352.5" r="9.4" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="262.2" cy="354.1" r="9.3" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="147.0" cy="372.8" r="9.2" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="165.1" cy="371.3" r="8.5" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="189.7" cy="372.4" r="9.1" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="209.3" cy="370.5" r="8.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="232.9" cy="368.6" r="9.4" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="260.6" cy="372.6" r="10.8" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="148.5" cy="393.3" r="9.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="172.6" cy="387.5" r="10.7" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="187.1" cy="392.9" r="11.2" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="214.6" cy="392.8" r="8.9" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="234.8" cy="392.9" r="10.9" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="257.4" cy="393.4" r="10.5" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="150.1" cy="404.4" r="8.9" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="173.9" cy="410.8" r="10.2" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="202.9" cy="409.6" r="10.0" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="229.0" cy="410.1" r="10.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="252.7" cy="404.7" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="152.2" cy="424.1" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="180.7" cy="429.8" r="10.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="201.8" cy="427.5" r="10.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="226.3" cy="422.6" r="8.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="250.3" cy="424.4" r="10.2" fill="#D97736" fill-opacity="0.94"/>
+              </g>
+
+              <g class="grain-float delay-1">
+          <circle cx="117.3" cy="72.6" r="10.0" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="153.9" cy="72.7" r="9.5" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="183.9" cy="71.7" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="219.7" cy="76.6" r="8.1" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="250.1" cy="76.8" r="9.3" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="276.8" cy="76.7" r="8.6" fill="#F4C430" fill-opacity="0.94"/>
+              </g>
+
+              <g class="grain-float delay-2">
+          <circle cx="129.5" cy="88.1" r="10.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="168.7" cy="88.1" r="10.7" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="197.9" cy="90.4" r="9.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="229.8" cy="88.0" r="9.4" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="264.8" cy="87.1" r="8.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="140.4" cy="103.5" r="10.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="184.9" cy="103.3" r="10.7" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="217.5" cy="101.4" r="11.0" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="254.5" cy="101.6" r="8.8" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="149.1" cy="118.0" r="8.9" fill="#2A5B46" fill-opacity="0.94"/>
+          <circle cx="182.1" cy="114.6" r="9.5" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="214.9" cy="118.7" r="10.7" fill="#3E7D5F" fill-opacity="0.94"/>
+          <circle cx="248.8" cy="118.5" r="10.8" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="166.3" cy="127.3" r="10.2" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="202.0" cy="130.9" r="8.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="238.9" cy="127.8" r="9.4" fill="#F4C430" fill-opacity="0.94"/>
+          <circle cx="177.0" cy="145.4" r="10.9" fill="#D97736" fill-opacity="0.94"/>
+          <circle cx="222.6" cy="142.8" r="9.7" fill="#F4C430" fill-opacity="0.94"/>
+              </g>
+            </svg>
+            <p class="hero-caption">"De grão em grão, a galinha enche o papo."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= TRUST STRIP ======================= -->
+    <div class="trust-strip">
+      <div class="container">
+        <span>Redes de varejo</span>
+        <span>Indústrias de alimentos</span>
+        <span>Restaurantes e food service</span>
+        <span>Cooperativas locais</span>
+        <span>Prefeituras parceiras</span>
+      </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <!-- ======================= SOBRE ======================= -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">O projeto</span>
+          <h2>Uma ponte confiável entre quem tem excedente e quem precisa</h2>
+          <p>
+            Todos os dias, empresas descartam alimentos próprios para consumo por questões de prazo,
+            embalagem ou estoque. A De Grão em Grão dá a esse excedente um destino rastreável:
+            conecta doadores, ONGs e famílias em um único fluxo digital, com regras claras de segurança
+            alimentar do início ao fim.
+          </p>
+        </div>
+
+        <div class="about-pillars" style="display:grid; gap:1.5rem; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));">
+          <div>
+            <h3 style="color:var(--primary-green-dark); margin-bottom:0.5rem;">Empresas Doadoras</h3>
+            <p style="font-size:0.95rem;">Cadastram excedentes em minutos, emitem nota de doação e acompanham o impacto ESG gerado.</p>
+          </div>
+          <div>
+            <h3 style="color:var(--primary-green-dark); margin-bottom:0.5rem;">ONGs Parceiras</h3>
+            <p style="font-size:0.95rem;">Fazem a triagem, controlam validade e distribuem com prioridade para quem está na fila há mais tempo.</p>
+          </div>
+          <div>
+            <h3 style="color:var(--primary-green-dark); margin-bottom:0.5rem;">Famílias Beneficiadas</h3>
+            <p style="font-size:0.95rem;">Agendam a retirada pelo aplicativo e recebem alertas quando um item do seu interesse chega.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= COMO FUNCIONA ======================= -->
+    <section class="section process" id="como-funciona">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow">O fluxo</span>
+          <h2>Como funciona, do estoque à mesa</h2>
+          <p>Três etapas conectadas, cada uma com um responsável e um registro auditável.</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <span class="process-step" aria-hidden="true">01</span>
+            <h3>Doação Corporativa &amp; ESG</h3>
+            <p>
+              A empresa cadastra o excedente — quantidade, categoria e validade — e gera automaticamente
+              o relatório de impacto socioambiental usado em seus indicadores ESG.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <span class="process-step" aria-hidden="true">02</span>
+            <h3>Triagem e Gestão na ONG</h3>
+            <p>
+              A ONG parceira mais próxima recebe a doação, confere a qualidade e organiza os itens
+              por urgência de validade dentro do painel de gestão.
+            </p>
+          </article>
+
+          <article class="process-card">
+            <span class="process-step" aria-hidden="true">03</span>
+            <h3>Retirada Inteligente pela Família</h3>
+            <p>
+              Famílias cadastradas recebem notificação, escolhem um horário disponível e retiram
+              os itens com um código de confirmação simples.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= IMPACTO / ESG ======================= -->
+    <section class="section impact" id="impacto">
+      <div class="container">
+        <div class="section-heading center">
+          <span class="eyebrow">Impacto real</span>
+          <h2>Resultados que entram no relatório ESG</h2>
+          <p>Números acumulados desde o início da operação da rede De Grão em Grão.</p>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-number">86<span>toneladas</span></div>
+            <p class="impact-label">de CO₂e evitado</p>
+            <p class="impact-desc">Emissões que deixaram de ser geradas por descarte em aterro.</p>
+            <div class="impact-bar-track"><div class="impact-bar-fill" style="width:78%"></div></div>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-number">312<span>mil kg</span></div>
+            <p class="impact-label">de alimentos salvos</p>
+            <p class="impact-desc">Volume redirecionado do descarte para consumo seguro.</p>
+            <div class="impact-bar-track"><div class="impact-bar-fill" style="width:64%"></div></div>
+          </div>
+
+          <div class="impact-card">
+            <div class="impact-number">4.600<span>+</span></div>
+            <p class="impact-label">famílias atendidas</p>
+            <p class="impact-desc">Núcleos familiares cadastrados e ativos na rede este ano.</p>
+            <div class="impact-bar-track"><div class="impact-bar-fill" style="width:52%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CTA FINAL ======================= -->
+    <section class="section final-cta">
+      <div class="container">
+        <div class="final-cta-box">
+          <div class="final-cta-copy">
+            <h2>Pronto para fazer parte da rede?</h2>
+            <p>Leva menos de cinco minutos para cadastrar sua empresa, sua ONG ou sua família e começar a usar o portal.</p>
+          </div>
+          <div class="final-cta-actions">
+            <a href="#doar" class="btn-primary">Quero Doar Alimentos</a>
+            <a href="#beneficiario" class="btn-ghost">Sou uma ONG/Beneficiário</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-brand">
+            <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="20" cy="20" r="20" fill="#3E7D5F"/>
+              <path d="M20 8C20 8 12 14.5 12 22.5C12 27.19 15.58 31 20 31C24.42 31 28 27.19 28 22.5C28 14.5 20 8 20 8Z" fill="#F4C430"/>
+            </svg>
+            De Grão em Grão
+          </div>
+          <p>Rede digital que conecta empresas doadoras, ONGs e famílias para reduzir o desperdício de alimentos com rastreabilidade de ponta a ponta.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#sobre">Sobre o projeto</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#impacto">Impacto ESG</a></li>
+            <li><a href="login.html">Acessar Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Participe</h4>
+          <ul>
+            <li><a href="#doar">Doar alimentos</a></li>
+            <li><a href="#beneficiario">Cadastrar ONG</a></li>
+            <li><a href="#beneficiario">Cadastrar família</a></li>
+            <li><a href="mailto:contato@degraoemgrao.org.br">Fale conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Segurança Alimentar</a></li>
+            <li><a href="#">Relatório de Transparência</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="a11y-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          Este site segue as diretrizes de acessibilidade WCAG 2.1 AA: navegação por teclado, contraste adequado e textos alternativos em todas as imagens.
+        </p>
+        <p class="footer-copy">© 2026 De Grão em Grão. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>

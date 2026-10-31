@@ -7,7 +7,13 @@
  */
 
 document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("dynamic-sidebar") && !hasDemoSession()) {
+        window.location.replace("./login.html");
+        return;
+    }
+
     initSidebar();
+    initLogout();
     initLoginForm();
     initMovimentacao();
     initCadastroTabs();
@@ -16,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
     initFormHandlers();
     initPessoasActions();
 });
+
+const DEMO_SESSION_KEY = "degraoDemoAuthenticated";
+
+function hasDemoSession() {
+    return sessionStorage.getItem(DEMO_SESSION_KEY) === "true";
+}
 
 
 /* ==========================================================================
@@ -68,40 +80,49 @@ function initSidebar() {
         </div>
         <nav class="sidebar-nav">${navHTML}</nav>
         <div class="sidebar-footer">
-            <a href="./index.html" class="side-item logout">
+            <a href="./login.html" class="side-item logout">
                 <span class="material-icons-outlined">logout</span> Sair
             </a>
         </div>`;
 }
 
+function initLogout() {
+    const logoutLink = document.querySelector(".sidebar-footer a.logout");
+    if (!logoutLink) return;
+
+    logoutLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        sessionStorage.removeItem(DEMO_SESSION_KEY);
+        window.location.href = "./login.html";
+    });
+}
+
 
 /* ==========================================================================
    2. LOGIN
-   Submit redireciona para o dashboard.
-   Para integração backend: substituir o window.location por uma chamada
-   POST /api/auth/login com { identifier, password } e tratar o JWT retornado.
    ========================================================================== */
 function initLoginForm() {
     const loginForm = document.getElementById("login-form");
     if (!loginForm) return;
 
-    loginForm.addEventListener("submit", async function (e) {
+    loginForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const identifier = document.getElementById("login-identifier").value.trim();
         const password    = document.getElementById("login-password").value;
+        const errorMessage = document.getElementById("login-error");
 
-        // TODO (backend): descomente e adapte quando a API estiver disponível
-        // try {
-        //     const res = await api.post("/auth/login", { identifier, password });
-        //     localStorage.setItem("token", res.token);
-        //     window.location.href = "./dashboard.html";
-        // } catch (err) {
-        //     showToast("Usuário ou senha inválidos.", "error");
-        // }
+        errorMessage.hidden = true;
+        errorMessage.textContent = "";
 
-        // Mock atual: redireciona direto
-        window.location.href = "./dashboard.html";
+        if (identifier === "admin" && password === "admin123") {
+            sessionStorage.setItem(DEMO_SESSION_KEY, "true");
+            window.location.href = "./dashboard.html";
+            return;
+        }
+
+        errorMessage.textContent = "Usuário ou senha inválidos.";
+        errorMessage.hidden = false;
     });
 }
 
@@ -501,11 +522,7 @@ const api = (() => {
     const BASE_URL = "http://localhost:8080/api"; // TODO: ajustar para URL de produção
 
     function getHeaders() {
-        const token = localStorage.getItem("token");
-        return {
-            "Content-Type": "application/json",
-            ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        };
+        return { "Content-Type": "application/json" };
     }
 
     async function request(method, endpoint, body) {
@@ -513,12 +530,6 @@ const api = (() => {
         if (body) options.body = JSON.stringify(body);
 
         const response = await fetch(`${BASE_URL}${endpoint}`, options);
-
-        if (response.status === 401) {
-            localStorage.removeItem("token");
-            window.location.href = "./index.html";
-            return;
-        }
 
         if (!response.ok) {
             const err = await response.json().catch(() => ({}));

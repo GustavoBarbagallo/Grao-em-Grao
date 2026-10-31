@@ -1,0 +1,296 @@
+/* ==========================================================================
+   DE GRÃO EM GRÃO — GLOBAL.CSS
+   Design System / Reset / Base Typography
+   ========================================================================== */
+
+/* -----------------------------
+   Fontes (Google Fonts)
+------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+/* -----------------------------
+   Design Tokens
+------------------------------ */
+:root {
+  /* Cores de marca */
+  --primary-green: #2A5B46;
+  --primary-green-dark: #1E4434;
+  --primary-green-light: #3E7D5F;
+  --primary-green-tint: #E7EFE9;
+
+  --secondary-earth: #D97736;
+  --secondary-earth-dark: #B85F26;
+  --secondary-earth-tint: #FBE7D6;
+
+  --accent-yellow: #F4C430;
+  --accent-yellow-dark: #DDA915;
+
+  --bg-neutral: #FDFBF7;
+  --text-main: #1C1E1D;
+  --surface-white: #FFFFFF;
+
+  /* Tons derivados (apoio) */
+  --text-muted: #5B6560;
+  --text-inverse: #F5F3EC;
+  --border-subtle: #E7E1D3;
+  --border-strong: #CFC7B4;
+  --shadow-soft: 0 12px 32px -18px rgba(28, 30, 29, 0.28);
+  --shadow-card: 0 18px 40px -24px rgba(42, 91, 70, 0.35);
+
+  /* Tipografia */
+  --font-display: 'Poppins', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  /* Escala tipográfica fluida */
+  --fs-h1: clamp(2.25rem, 4.6vw + 1rem, 3.75rem);
+  --fs-h2: clamp(1.75rem, 2.4vw + 1rem, 2.5rem);
+  --fs-h3: clamp(1.15rem, 1vw + 0.9rem, 1.4rem);
+  --fs-lead: clamp(1.05rem, 0.6vw + 0.9rem, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  /* Espaçamento e layout */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --container-width: 1180px;
+  --section-padding-y: clamp(4rem, 8vw, 7rem);
+
+  --transition-fast: 160ms ease;
+  --transition-base: 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* -----------------------------
+   Reset
+------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-neutral);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); font-weight: 600; }
+
+p {
+  color: var(--text-muted);
+}
+
+/* -----------------------------
+   Acessibilidade
+------------------------------ */
+:focus-visible {
+  outline: 3px solid var(--accent-yellow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--primary-green-dark);
+  color: var(--text-inverse);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  z-index: 999;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* -----------------------------
+   Layout utilitário
+------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding-block: var(--section-padding-y);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-green);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--secondary-earth);
+  display: inline-block;
+  border-radius: var(--radius-pill);
+}
+
+.section-heading {
+  max-width: 640px;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.section-heading p {
+  margin-top: 0.9rem;
+  font-size: var(--fs-lead);
+}
+
+.section-heading.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* -----------------------------
+   Botões
+------------------------------ */
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--secondary-earth);
+  color: var(--text-inverse);
+  box-shadow: 0 14px 28px -14px rgba(217, 119, 54, 0.65);
+}
+
+.btn-primary:hover {
+  background: var(--secondary-earth-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px -14px rgba(217, 119, 54, 0.75);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-green);
+  border: 1.5px solid var(--primary-green);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-green);
+  color: var(--text-inverse);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: var(--primary-green-tint);
+  color: var(--primary-green-dark);
+}
+
+.btn-ghost:hover {
+  background: var(--border-subtle);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-ghost:active {
+  transform: translateY(0);
+}

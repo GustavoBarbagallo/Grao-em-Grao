@@ -263,6 +263,15 @@ td {
     z-index: 1;
 }
 
+.login-error {
+    color: #b3261e;
+    font-size: 13px;
+    margin: 0 0 16px;
+    text-align: left;
+}
+
+.login-error[hidden] { display: none; }
+
 .btn-system-login {
     background-color: #009661;
     color: #ffffff;
@@ -281,6 +290,7 @@ td {
 }
 
 .btn-system-login:hover { background-color: #007d50; }
+.btn-system-login:disabled { cursor: wait; opacity: 0.7; }
 .login-card-links { margin-top: 20px; }
 .login-card-links a { color: #555555; font-size: 13px; text-decoration: none; }
 .login-card-links a:hover { color: #009661; text-decoration: underline; }
