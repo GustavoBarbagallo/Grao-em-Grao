@@ -23,11 +23,13 @@ Essa relação descreve o propósito do projeto, não um impacto medido: a demon
 
 ## Capturas de tela
 
-As capturas disponíveis estão na pasta `assets/`.
+### Landing page
 
-| Landing page | Dashboard |
-|---|---|---|
-| ![Captura da landing page](<./assets/captura (2).png>) | ![Captura do dashboard](<./assets/captura (1).png>) |
+![Captura da landing page](./assets/captura%20(2).png)
+
+### Dashboard
+
+![Captura do dashboard](./assets/captura%20(1).png)
 
 ## Tecnologias
 
