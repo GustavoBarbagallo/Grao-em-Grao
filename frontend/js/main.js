@@ -360,8 +360,8 @@ function initDashboardCharts() {
             data: {
                 labels: ["Jan", "Fev", "Mar", "Abr"],
                 datasets: [
-                    { label: "Entradas", data: [330, 300, 370, 350], backgroundColor: "#009661", borderRadius: 4 },
-                    { label: "Saídas",   data: [280, 250, 310, 290], backgroundColor: "#3b82f6", borderRadius: 4 },
+                    { label: "Entradas", data: [330, 300, 370, 350], backgroundColor: "#2A5B46", borderRadius: 4 },
+                    { label: "Saídas",   data: [280, 250, 310, 290], backgroundColor: "#D97736", borderRadius: 4 },
                 ],
             },
             options: {
@@ -379,7 +379,7 @@ function initDashboardCharts() {
             type: "pie",
             data: {
                 labels: ["Grãos", "Enlatados", "Óleos", "Outros"],
-                datasets: [{ data: [36, 26, 17, 21], backgroundColor: ["#009661", "#f36c13", "#3b82f6", "#a855f7"] }],
+                datasets: [{ data: [36, 26, 17, 21], backgroundColor: ["#2A5B46", "#D97736", "#F4C430", "#3E7D5F"] }],
             },
             options: {
                 responsive: true,
@@ -457,10 +457,10 @@ function initFormHandlers() {
  */
 function showToast(message, type = "info") {
     const colors = {
-        success: "#009661",
+        success: "#2A5B46",
         error:   "#ea4335",
-        warning: "#f36c13",
-        info:    "#2b6cb0",
+        warning: "#D97736",
+        info:    "#3E7D5F",
     };
 
     // Reutilizar container ou criar um novo
